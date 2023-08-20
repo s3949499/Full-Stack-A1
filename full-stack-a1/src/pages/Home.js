@@ -1,10 +1,11 @@
 function Home() {
     return (
-      <div>
-        <h1>Welcome to Loop Web</h1>
-        {/* Add information about Loop Web, locations etc. */}
-        {/* Display a list of hardcoded movies & session times */}
-      </div>
+      
+     <div class ="home-content">
+      <h1> Welcome to LOOP WEB </h1>
+      <p>Loop web is a movie hosting service?</p>
+     </div>
+      
     );
   }
   export default Home;
