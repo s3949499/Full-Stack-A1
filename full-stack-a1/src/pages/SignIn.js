@@ -50,20 +50,26 @@ function SignIn() {
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Email" onChange={handleInputChange} required />
-        {errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
-        
-        <input type="password" name="password" placeholder="Password" onChange={handleInputChange} required />
-        {errors.password && <span style={{color: 'red'}}>{errors.password}</span>}
-        
-        {errors.general && <span style={{color: 'red', display: 'block'}}>{errors.general}</span>}
-        
-        <button type="submit">Sign In</button>
-      </form>
+    <div className='container'>
+      <div className='form-container'>
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit}>
+          <div className='form-field'>
+            <input type="email" name="email" placeholder="Email" onChange={handleInputChange} required />
+            {errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
+          </div>
+          <div className='form-field'>
+            <input type="password" name="password" placeholder="Password" onChange={handleInputChange} required />
+            {errors.password && <span style={{color: 'red'}}>{errors.password}</span>}
+          </div>
+            {errors.general && <span style={{color: 'red', display: 'block'}}>{errors.general}</span>}
+          <div className='form-field'>
+            <button type="submit">Sign In</button>
+          </div>
+        </form>
+      </div>
     </div>
+    
   );
 }
 

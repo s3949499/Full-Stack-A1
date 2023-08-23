@@ -66,20 +66,30 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" onChange={handleInputChange} required />
-        {errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
-        
-        <input type="email" name="email" placeholder="Email" onChange={handleInputChange} required />
-        {errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
-        
-        <input type="password" name="password" placeholder="Password" onChange={handleInputChange} required />
-        {errors.password && <span style={{color: 'red'}}>{errors.password}</span>}
-        
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="container">
+      <div className="form-container">
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-field">
+            <input type="text" name="name" placeholder="Name" onChange={handleInputChange} required />
+            {errors.name && <span>{errors.name}</span>}
+          </div>
+          
+          <div className="form-field">
+            <input type="email" name="email" placeholder="Email" onChange={handleInputChange} required />
+            {errors.email && <span>{errors.email}</span>}
+          </div>
+          
+          <div className="form-field">
+            <input type="password" name="password" placeholder="Password" onChange={handleInputChange} required />
+            {errors.password && <span>{errors.password}</span>}
+          </div>
+          
+          <div className="form-field">
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
