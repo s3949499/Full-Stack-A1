@@ -2,10 +2,11 @@ import './App.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Nav from "./pages/Nav";
+import Nav from "./pages/Layout";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Profile from './pages/Profile';
 
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
     <Route index element={<Home />} />
     <Route path="SignIn" element={<SignIn />} />
     <Route path="SignUp" element={<SignUp />} />
-    
+    <Route path="Profile" element={<Profile />} />
   </Route>
 </Routes>
 </BrowserRouter>
