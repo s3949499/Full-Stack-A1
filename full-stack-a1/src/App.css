@@ -80,9 +80,9 @@ footer {
   width: 100%;
   padding: 0;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.50);
   margin: 0;
-  position: flex;
+  position: fixed;
   bottom: 0;
 
 
@@ -170,58 +170,59 @@ footer {
   background-color: #0056b3;
 }
 
-.home-container{
-  position: relative;
+.home-container {
+  display: block;
   height: 100vh;
   background-color: #201e1d;
 }
-.home-content{
+
+.home-content {
   position: flex;
   background-color: #201e1d;
-  
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
 
 }
-.home-s1 {
+
+
+
+.home-s1, .home-s2, .home-s3 {
+  margin-top: 10px;
   background-color: #3a3737;
   padding: 20px;
   color: white;
 }
-.home-s2 {
-  background-color: #3a3737;
-  padding: 20px;
-  color: white;
-}
-.home-s3 {
-  background-color: #3a3737;
-  padding: 20px;
-  color: white;;
-}
-.img-container{
+
+
+
+.img-container {
   position: relative;
   background-color: #2d2d2d;
 }
-.icon{
+
+.icon {
   height: 50px;
   filter: invert();
   float: left;
   padding-right: 2px;
-  
+
 }
 
 .img-container:hover .overlay {
   opacity: 0.75;
 }
-.cinema-BG{
+
+.cinema-BG {
   display: block;
   width: 100%;
   height: 700px;
   object-fit: cover;
   overflow: hidden;
 }
-.overlay{
+
+.overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -233,6 +234,7 @@ footer {
   transition: .5s ease;
   background-color: #292524;
 }
+
 .ov-text {
   color: rgb(255, 255, 255);
   font-size: 20px;
@@ -244,3 +246,44 @@ footer {
 
 }
 
+.coverArt {
+  border-radius: 50px;
+  padding: 10px;
+  width: 400px; /* Allow the images to adjust within their containers */
+  height: 600px; /* Let the height adjust proportionally */
+}
+
+.movie-section {
+  height: 110vh;
+  background-color: #201e1d;
+  
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Responsive grid */
+  gap: 10px;
+  padding: 10px;
+  color:rgb(255, 255, 255);
+  text-align: center;
+}
+
+
+.movie-1 {
+  grid-column: span 1; /* Occupies 1 column */
+}
+
+.movie-2 {
+  grid-column: span 1; /* Occupies 1 column */
+}
+
+.movie-3 {
+  grid-column: span 1; /* Occupies 1 column */
+}
+
+
+.movie-h1{
+  
+  color: #f3f4f6;
+  text-align: center;
+}
