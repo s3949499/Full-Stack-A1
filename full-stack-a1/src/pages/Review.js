@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Review() {
     const [rating, setRating] = useState(1);
@@ -7,6 +7,17 @@ function Review() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const user = JSON.parse(localStorage.getItem('user'));
+
+
+    //new code
+    //Retrieve reviews from local storage
+    useEffect(() => {
+        const storedReviews = JSON.parse(localStorage.getItem('reviews'));
+        if (storedReviews) {
+            setReviews(storedReviews);
+        }
+    }, []);
+    //new code
 
     const handleSubmitReview = (e) => {
         e.preventDefault();
@@ -30,20 +41,25 @@ function Review() {
             review
         };
 
+        
         setReviews([...reviews, newReview]);
+        //new code
+        //Set review in local storage
+        localStorage.setItem('reviews', JSON.stringify([...reviews, newReview]));
+        //new code
         setReview('');
         setRating(0);
         setErrorMessage("");
     };
 
     return (
-    <div className="container-review">
+        <div className="container-review">
             {errorMessage && <div className="error-message">{errorMessage}</div>}
 
             <h1>Post a Review</h1>
             <form onSubmit={handleSubmitReview} className="review-form">
                 {[1, 2, 3, 4, 5].map(star => (
-                    <span 
+                    <span
                         key={star}
                         className="star-rating"
                         onClick={() => setRating(star)}
@@ -52,10 +68,10 @@ function Review() {
                         ★
                     </span>
                 ))}
-                <textarea 
+                <textarea
                     className="textarea-review"
-                    value={review} 
-                    onChange={(e) => setReview(e.target.value)} 
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
                     placeholder="Write your review here..."
                     maxLength={250}
                     required
@@ -73,7 +89,7 @@ function Review() {
                 ))}
             </div>
         </div>
-  );
+    );
 }
 
 export default Review;

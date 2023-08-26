@@ -7,16 +7,16 @@ function Profile() {
     <div className='profile-Container'>
 
 
-    <div className='profile-details'>
-    <h2>Profile</h2>
-    <div className='userName'>
-    <img className="profile-Icon" src="profileIcon.png" alt="displayed next to username"></img>
-    <p className='userName-text'> {user.name}</p>
-    </div>
-    <p> {user.email}</p>
-    </div>
+      <div className='profile-details'>
+        <h2>Profile</h2>
+        <div className='userName'>
+          <img className="profile-Icon" src="profileIcon.png" alt="displayed next to username"></img>
+          <p className='userName-text'> {user.name}</p>
+        </div>
+        <p> {user.email}</p>
+      </div>
 
-  </div>
+    </div>
   );
 }
 
