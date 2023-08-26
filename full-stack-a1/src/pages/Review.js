@@ -41,7 +41,7 @@ function Review() {
             review
         };
 
-        
+
         setReviews([...reviews, newReview]);
         //new code
         //Set review in local storage

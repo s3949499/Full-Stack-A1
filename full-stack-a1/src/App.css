@@ -123,15 +123,18 @@ footer {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f3f4f6;
+  background-color: #201e1d;
 }
 
 .form-container {
   width: 350px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #2d2d2d;
   border-radius: 8px;
+}
+h1{
+  color: white;
 }
 
 .form-container h1 {
@@ -159,7 +162,7 @@ footer {
 .form-field button {
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
+  background-color: #C73214;
   border: none;
   color: white;
   border-radius: 4px;
@@ -167,7 +170,7 @@ footer {
 }
 
 .form-field button:hover {
-  background-color: #0056b3;
+  background-color: #a82c13;
 }
 
 .home-container {
@@ -263,7 +266,8 @@ footer {
 
 .movies {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(5, minmax(400px, 1fr));
+
   /* Responsive grid */
   gap: 10px;
   padding: 10px;
@@ -337,35 +341,206 @@ footer {
   height: 300px;
   border-radius: 50px;
   color: white;
-  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   grid-column-start: 2;
-  grid-row-start: 2;
+  grid-row-start: 1;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
 
 }
 
 .profile-Container {
   background-color: #282727;
-  size: 100vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  place-items: center;
 
 }
 
 .profile-Icon {
   float: left;
   height: 50px;
+  grid-column: 2 / span 1;
+  grid-row-start: 2;
+  justify-self: end;
 
 
 }
+
+.profile-Header {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+  padding: 5px;
+
+
+}
+
 
 .userName {
-  padding: 1px;
+  padding-left: 5px;
+  grid-column: 3 / span 1;
+  grid-row-start: 2;
+  justify-self: start;
+
 }
 
-.userName-text {
+.userEmail {
   padding-left: 5px;
+  grid-column: 2 / span 2;
+  grid-row-start: 3;
+
+}
+
+.edit-Button {
+  width: 135px;
+  height: 35px;
+  padding: 10px;
+  background-color: #C73214;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  float: left;
+  display: block;
+  grid-column-start: 2;
+  grid-row-start: 4;
+
+}
+.edit-Button:hover{
+  background-color: #a82c13;
+}
+.delete-Button {
+  width: 135px;
+  height: 35px;
+  padding: 10px;
+  margin: 1px;
+  background-color: #C73214;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  float: right;
+  display: block;
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
+.delete-Button:hover{
+  background-color: #a82c13;
+}
+
+
+.edit-Overlay {
+  width: 600px;
+  background-color: #2d2d2d;
+  height: 600px;
+  color: white;
+
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  grid-column: 1 / span 5;
+  grid-row-start: 5;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  z-index: 1;
+  place-items: center;
+}
+
+.edit-Name {
+  margin-top: 10px;
+  text-align: center;
+
+}
+
+.edit-Email {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.edit-Password {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.edit-Save {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+.edit-Name input {
+  width: 100%;
+  max-width: 190px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-Email input {
+  width: 100%;
+  max-width: 190px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-Password input {
+  width: 100%;
+  max-width: 190px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+.edit-Name span {
+  color: red;
+  font-size: 12px;
+}
+
+.edit-Email span {
+  color: red;
+  font-size: 12px;
+}
+
+.edit-Password span {
+  color: red;
+  font-size: 12px;
+
+}
+
+.edit-Save button {
+  width: 150px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #C73214;
+  border: 1px solid #C73214;
+  color: #Ffffff;
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.edit-Form {
+  grid-column: 1 / span 5;
+  grid-row-start: 1 / span 3;
 }

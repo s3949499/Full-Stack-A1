@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function isValidEmail(email) {
+export function isValidEmail(email) {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
   return regex.test(email);
 }
 
-function validatePassword(password) {
+export function validatePassword(password) {
   const minCharRegex = /^.{8,}$/;
   const upperCaseRegex = /[A-Z]/;
   const lowerCaseRegex = /[a-z]/;
