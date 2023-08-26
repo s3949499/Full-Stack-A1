@@ -37,7 +37,7 @@ function SignIn() {
 
       if (storedUser && storedUser.email === formData.email && storedUser.password === formData.password) {
         alert("Login Successful!");
-
+        
         // Redirect the user to the home page
         navigate('/');
       } else {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isValidEmail, validatePassword } from './SignUp'; // Import the validation functions
+import { isValidEmail, validatePassword } from './SignUp';
+{/* import validation functions from SignUp.js */ }
 
 function Profile() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -11,51 +12,48 @@ function Profile() {
     email: user.email,
     password: user.password
   });
-  const [errors, setErrors] = useState({}); // Add state for form errors
+  const [errors, setErrors] = useState({}); {/* add state for form issues */ }
 
-  // DELETE PROFILE
+  {/* delete user profile */ }
   const handleProfileDelete = () => {
     if (window.confirm('Are you sure you want to delete your profile? This will also delete your reviews.')) {
-      // Delete user profile
+      {/* deletes user profile from local storage */ }
       localStorage.removeItem('user');
-      // Delete user's reviews
+      {/* deletes user reviews alongside profile */ }
       const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
       const updatedReviews = reviews.filter(review => review.user !== user.name);
       localStorage.setItem('reviews', JSON.stringify(updatedReviews));
-      // Navigate back to homepage upon deletion
+      {/* navigates to home page upon profile deletion*/ }
       navigate('/');
     }
   };
 
-  // EDIT PROFILE
+  {/* Edit profile */ }
   const handleProfileEdit = () => {
     setIsFormVisible(!isFormVisible);
   };
 
-  // HANDLE FORM INPUT CHANGES
+  {/* handle input form changes */ }
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedUser(prevEditedUser => ({ ...prevEditedUser, [name]: value }));
 
-    // Clear error for the field when it's being edited
+    {/* clears error messages when field is being edited*/ }
     setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
   };
-// SAVE EDITED PROFILE
-const handleProfileSave = () => {
-  const formIsValid = validateForm(); // Validate the form before saving
+  {/* save edited profile */ }
+  const handleProfileSave = () => {
+    const formIsValid = validateForm(); {/* validate form before saving */ }
 
-  if (formIsValid) {
-    // Update local storage with edited user data
-    localStorage.setItem('user', JSON.stringify(editedUser));
-    // Hide the form
-    setIsFormVisible(false);
-  } else {
-    // Form is not valid, do not save
-    // You can optionally display an error message or handle it in another way
-  }
-};
+    if (formIsValid) {
+      {/* update local storage data */ }
+      localStorage.setItem('user', JSON.stringify(editedUser));
+      {/* Hides form when submitted */ }
+      setIsFormVisible(false);
+    }
+  };
 
-  // Validate the form data
+  {/* validate form data */ }
   const validateForm = () => {
     let formErrors = {};
 
@@ -77,6 +75,7 @@ const handleProfileSave = () => {
 
   return (
     <div className='profile-Container'>
+      {/* displays a card that shows the users username and email */}
       <div className='profile-details'>
         <h2 className='profile-Header'>--Your Profile--</h2>
         <img className="profile-Icon" src="profileIcon.png" alt="displayed next to username"></img>

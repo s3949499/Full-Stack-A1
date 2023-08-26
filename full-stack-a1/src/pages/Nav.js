@@ -1,38 +1,29 @@
-// Holds all page common attributes: Header, navbar, footer
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { Outlet, Link, } from "react-router-dom";
-
-function Common(){
+function Nav() {
   return (
-    <>
-      <div class = "header-container">
-       <header>
-        <img class = "header-logo" src="tv.png" alt="Logo"/>
-        <h1 class = "h1-header"> LOOP WEB </h1>
-       </header>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <Link className="navbar-link" to="/">HOME</Link>
-          </li>
-          <li><Link className="navbar-link" to="/SignIn">SIGN IN</Link></li>
-          <li>
-            <Link className="navbar-link" to="/SignUp">SIGN UP</Link>
-          </li>
-       
-        </ul>
-      </nav>
+    <nav>
+    {/* lists the webpages avaliable from the homepage*/}
+      <ul>
+        <li>
+          <Link className="navbar-link" to="/">HOME</Link>
+        </li>
+        <li>
+            <Link className="navbar-link" to="/SignIn">SIGN IN</Link>
+        </li>
+        <li>
+          <Link className="navbar-link" to="/SignUp">SIGN UP</Link>
+        </li>
+        <li>
+          <Link className="navbar-link" to="/Review">REVIEWS</Link>
+        </li>
+        <li>
+          <Link className="navbar-link" to="/Profile">PROFILE</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
 
-      <Outlet />
-      <div>
-       <footer>
-        <h1 class = "h1-footer"> Loop Web </h1>
-        <p class = "p-footer"> Footer </p>
-       </footer>
-      </div>
-    </>
-  )
-};
-
-export default Common;
+export default Nav;

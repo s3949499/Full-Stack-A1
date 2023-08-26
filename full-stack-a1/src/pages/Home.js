@@ -1,6 +1,7 @@
 function Home() {
   return (
     <>
+    {/* For image at top of landing page w/overlay */}
       <div className="home-container">
         <div className="img-container">
           <img className="cinema-BG" src='cinemaBG2.jpg' alt="cinema backdrop"></img>
@@ -31,12 +32,13 @@ function Home() {
             <p>Loop Cinemas hold a variety of community events, art shows in addition to the latest and greatest film releases.</p>
           </div>
         </div>
-
+         {/* Display information for movie */}
         <div className="movie-section">
           <h1 className="movie-h1"> Featured movies</h1>
           <div className="movies">
             <div className="movie-1">
               <img className="coverArt" src='lucas.jpg' alt="movie cover"></img>
+          {/* Movie showing times */}
               <h2>Movie 1: Showing Times</h2>
               <h3>-- 20/07/2023 --</h3>
               <p>12:30-14:30</p>
