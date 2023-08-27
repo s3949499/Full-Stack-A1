@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Nav() {
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <nav>
     {/* lists the webpages avaliable from the homepage*/}
@@ -16,7 +17,8 @@ function Nav() {
           <Link className="navbar-link" to="/SignUp">SIGN UP</Link>
         </li>
         <li>
-          <Link className="navbar-link" to="/Profile">PROFILE</Link>
+          {/* checks if user is logged in and displays if user is true*/ }
+          {user && <Link className="navbar-link" to="/Profile">PROFILE</Link>}
         </li>
       </ul>
     </nav>

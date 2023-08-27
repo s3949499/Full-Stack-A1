@@ -8,6 +8,16 @@ function Review() {
     const [review, setReview] = useState('');
     const [reviews, setReviews] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
+    const [averageRating, setAverageRating] = useState(0); // New state for average rating
+
+    // Calculate the average rating from the reviews
+    const calculateAverageRating = (reviews) => {
+        if (reviews.length === 0) {
+            return 0;
+        }
+        const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+        return totalRating / reviews.length;
+    };
 
     // Retrieve reviews for the specific movie from local storage when the component mounts
     useEffect(() => {
@@ -17,6 +27,12 @@ function Review() {
             setReviews(filteredReviews);
         }
     }, [movieName]);
+
+    useEffect(() => {
+        // Calculate and update the average rating when reviews change
+        const averageRating = calculateAverageRating(reviews);
+        setAverageRating(averageRating);
+    }, [movieName, reviews]);
 
     const handleSubmitReview = (e) => {
         e.preventDefault();
@@ -35,7 +51,7 @@ function Review() {
         }
 
         const newReview = {
-            movie: movieName,   // Include the movie title
+            movie: movieName,
             user: user.name,
             rating,
             review
@@ -49,37 +65,46 @@ function Review() {
         // Update component's state
         setReviews([...reviews, newReview]);
         setReview('');
-        setRating(0); // I'd suggest setting it to 1 or null so you don't unintentionally get 0-star reviews
+        setRating(1);
         setErrorMessage("");
+
+        // Calculate and update the average rating when a new review is added
+        const updatedAverageRating = calculateAverageRating([...reviews, newReview]);
+        setAverageRating(updatedAverageRating);
     };
 
     return (
         <div className="container-review">
             {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <div className='review-Card'>
+                <h1 className='review-h1'>Post a Review for {movieName}</h1>
+                <form onSubmit={handleSubmitReview} className="review-form">
+                    {[1, 2, 3, 4, 5].map(star => (
+                        <span
+                            key={star}
+                            className="star-rating"
+                            onClick={() => setRating(star)}
+                            style={{ color: star <= rating ? '#FFD700' : '#aaa' }}
+                        >
+                            ★
+                        </span>
+                    ))}
+                    <textarea
+                        className="textarea-review"
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
+                        placeholder="Write your review here..."
+                        maxLength={250}
+                        required
+                    />
+                    <div className="char-count">Characters left: {250 - review.length}</div>
+                    <button className="review-Post" type="submit">Post Review</button>
+                </form>
 
-            <h1 className='review-h1'>Post a Review for {movieName}</h1>
-            <form onSubmit={handleSubmitReview} className="review-form">
-                {[1, 2, 3, 4, 5].map(star => (
-                    <span
-                        key={star}
-                        className="star-rating"
-                        onClick={() => setRating(star)}
-                        style={{ color: star <= rating ? '#FFD700' : '#aaa' }}
-                    >
-                        ★
-                    </span>
-                ))}
-                <textarea
-                    className="textarea-review"
-                    value={review}
-                    onChange={(e) => setReview(e.target.value)}
-                    placeholder="Write your review here..."
-                    maxLength={250}
-                    required
-                />
-                <div className="char-count">Characters left: {250 - review.length}</div>
-                <button type="submit">Post Review</button>
-            </form>
+                <div className="average-rating">
+                    Average Rating: {averageRating.toFixed(1)} ★
+                </div>
+            </div>
 
             <div className="reviews-list">
                 {reviews.map((review, index) => (

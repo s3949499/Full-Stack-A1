@@ -52,7 +52,7 @@ function Home() {
               <img className="coverArt" src='lucas.jpg' alt="movie cover"></img>
           {/* Movie showing times */}
               <h2>Movie 1: Showing Times</h2>
-              {user && <Link to={`/review/Movie 1`}>Write a Review</Link>}
+              {user && <Link className='review-Link' to={`/review/Movie 1`}>Write a Review</Link>}
               <h3>-- 20/07/2023 --</h3>
               <p>12:30-14:30</p>
               <p>17:30-19:30</p>
