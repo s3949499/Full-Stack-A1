@@ -15,6 +15,7 @@ export function validatePassword(password) {
   const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   const errors = [];
+  // Adding text for each validation so user knows what they need in a password
   if (!minCharRegex.test(password)) errors.push("Minimum 8 characters required.");
   if (!upperCaseRegex.test(password)) errors.push("At least one uppercase letter required.");
   if (!lowerCaseRegex.test(password)) errors.push("At least one lowercase letter required.");

@@ -32,7 +32,7 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    // If form is validated login
     if (validateForm()) {
       const storedUser = JSON.parse(localStorage.getItem('user'));
 

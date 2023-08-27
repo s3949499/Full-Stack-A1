@@ -7,12 +7,13 @@ import { Outlet } from "react-router-dom";
 {/* Determines the way that webpages are layed out through route router*/}
 function Layout() {
   return (
-    <>
+    <div className="layout-container">
       <Header />
       <Nav />
       <Outlet />
+      
       <Footer />
-    </>
+    </div>
   );
 }
 

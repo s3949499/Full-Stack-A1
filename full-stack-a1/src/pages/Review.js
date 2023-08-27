@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 function Review() {
+    // Stating constants 
     const user = JSON.parse(localStorage.getItem('user'));
     const { movieName } = useParams();
     const [rating, setRating] = useState(1);
@@ -38,7 +39,7 @@ function Review() {
 
     const handleSubmitReview = (e) => {
         e.preventDefault();
-
+        // Providing validations for reviews
         if (!review) {
             setErrorMessage("Review can't be empty.");
             return;
@@ -51,12 +52,13 @@ function Review() {
             setErrorMessage("Review can't exceed 250 characters.");
             return;
         }
-
+        // Adding constant of newReview to allow for movie.name
         const newReview = {
             movie: movieName,
             user: user.name,
             rating,
-            review
+            review,
+            timestamp: Date.now() // Added timestamp for unique identifier
         };
 
 
@@ -77,6 +79,24 @@ function Review() {
         const updatedAverageRating = calculateAverageRating([...reviews, newReview]);
         setAverageRating(updatedAverageRating);
     };
+    // Function to edit a review
+    const handleEditReview = (timestamp) => {
+        const reviewToEdit = reviews.find(r => r.timestamp === timestamp);
+        if (reviewToEdit) {
+            setRating(reviewToEdit.rating);
+            setReview(reviewToEdit.review);
+            // Remove the review from the current list
+            const updatedReviews = reviews.filter(r => r.timestamp !== timestamp);
+            setReviews(updatedReviews);
+            localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+        }
+    };
+    // Function to delete a review
+    const handleDeleteReview = (timestamp) => {
+        const updatedReviews = reviews.filter(r => r.timestamp !== timestamp);
+        setReviews(updatedReviews);
+        localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+    };
 
     return (
         <div className="container-review">
@@ -84,6 +104,7 @@ function Review() {
             <div className='review-Card'>
                 <h1 className='review-h1'>Post a Review for {movieName}</h1>
                 <form onSubmit={handleSubmitReview} className="review-form">
+                    {/* Adding 5 stars in a map */}
                     {[1, 2, 3, 4, 5].map(star => (
                         <span
                             key={star}
@@ -110,12 +131,15 @@ function Review() {
                     Average Rating: {averageRating.toFixed(1)} ★
                 </div>
             </div>
-
+            {/* Review list with movie name */}
             <div className="reviews-list">
                 {reviews.map((review, index) => (
                     <div key={index} className="single-review">
                         <h3>{review.user} ({review.rating} ★) - {review.movie}</h3>
                         <p>{review.review}</p>
+                        {/* Add Edit and Delete buttons */}
+                        <button onClick={() => handleEditReview(review.timestamp)}>Edit</button>
+                        <button onClick={() => handleDeleteReview(review.timestamp)}>Delete</button>
                     </div>
                 ))}
             </div>

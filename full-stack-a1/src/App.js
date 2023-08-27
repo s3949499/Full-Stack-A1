@@ -19,7 +19,7 @@ export default function App() {
     <Route path="SignIn" element={<SignIn />} />
     <Route path="SignUp" element={<SignUp />} />
     <Route path="Profile" element={<Profile />} />
-    {/* <Route path="Review" element={<Review />} /> */}
+    {/* Routing to review page with the movie name */}
     <Route path="/review/:movieName" element={<Review />} />
   </Route>
 </Routes>
