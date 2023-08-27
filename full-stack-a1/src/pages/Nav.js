@@ -16,9 +16,6 @@ function Nav() {
           <Link className="navbar-link" to="/SignUp">SIGN UP</Link>
         </li>
         <li>
-          <Link className="navbar-link" to="/Review">REVIEWS</Link>
-        </li>
-        <li>
           <Link className="navbar-link" to="/Profile">PROFILE</Link>
         </li>
       </ul>

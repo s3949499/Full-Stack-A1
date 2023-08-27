@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Review() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const { movieName } = useParams();
     const [rating, setRating] = useState(1);
     const [review, setReview] = useState('');
     const [reviews, setReviews] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
 
-    const user = JSON.parse(localStorage.getItem('user'));
-
-
-    //new code
-    //Retrieve reviews from local storage
+    // Retrieve reviews for the specific movie from local storage when the component mounts
     useEffect(() => {
         const storedReviews = JSON.parse(localStorage.getItem('reviews'));
         if (storedReviews) {
-            setReviews(storedReviews);
+            const filteredReviews = storedReviews.filter(r => r.movie === movieName);
+            setReviews(filteredReviews);
         }
-    }, []);
-    //new code
+    }, [movieName]);
 
     const handleSubmitReview = (e) => {
         e.preventDefault();
@@ -36,19 +35,21 @@ function Review() {
         }
 
         const newReview = {
+            movie: movieName,   // Include the movie title
             user: user.name,
             rating,
             review
         };
 
+        // Get all reviews, add the new one, then save back to localStorage
+        const allReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        allReviews.push(newReview);
+        localStorage.setItem('reviews', JSON.stringify(allReviews));
 
+        // Update component's state
         setReviews([...reviews, newReview]);
-        //new code
-        //Set review in local storage
-        localStorage.setItem('reviews', JSON.stringify([...reviews, newReview]));
-        //new code
         setReview('');
-        setRating(0);
+        setRating(0); // I'd suggest setting it to 1 or null so you don't unintentionally get 0-star reviews
         setErrorMessage("");
     };
 
@@ -56,7 +57,7 @@ function Review() {
         <div className="container-review">
             {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-            <h1>Post a Review</h1>
+            <h1 className='review-h1'>Post a Review for {movieName}</h1>
             <form onSubmit={handleSubmitReview} className="review-form">
                 {[1, 2, 3, 4, 5].map(star => (
                     <span
@@ -83,7 +84,7 @@ function Review() {
             <div className="reviews-list">
                 {reviews.map((review, index) => (
                     <div key={index} className="single-review">
-                        <h3>{review.user} ({review.rating} ★)</h3>
+                        <h3>{review.user} ({review.rating} ★) - {review.movie}</h3>
                         <p>{review.review}</p>
                     </div>
                 ))}

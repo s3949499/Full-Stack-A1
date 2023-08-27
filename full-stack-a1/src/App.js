@@ -14,13 +14,13 @@ export default function App() {
   return (
 <BrowserRouter>
 <Routes>
-  
   <Route path="/" element={<Nav />}>
     <Route index element={<Home />} />
     <Route path="SignIn" element={<SignIn />} />
     <Route path="SignUp" element={<SignUp />} />
     <Route path="Profile" element={<Profile />} />
-    <Route path="Review" element={<Review />} />
+    {/* <Route path="Review" element={<Review />} /> */}
+    <Route path="/review/:movieName" element={<Review />} />
   </Route>
 </Routes>
 </BrowserRouter>

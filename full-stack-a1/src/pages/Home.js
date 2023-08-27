@@ -1,4 +1,16 @@
+import { Link } from 'react-router-dom';
+
 function Home() {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const movies = [
+    { id: 1, name: 'Movie 1' },
+    { id: 2, name: 'Movie 2' },
+    { id: 3, name: 'Movie 3' },
+    { id: 4, name: 'Movie 4' },
+    { id: 5, name: 'Movie 5' },
+  ];
+
   return (
     <>
     {/* For image at top of landing page w/overlay */}
@@ -40,17 +52,19 @@ function Home() {
               <img className="coverArt" src='lucas.jpg' alt="movie cover"></img>
           {/* Movie showing times */}
               <h2>Movie 1: Showing Times</h2>
+              {user && <Link to={`/review/Movie 1`}>Write a Review</Link>}
               <h3>-- 20/07/2023 --</h3>
               <p>12:30-14:30</p>
               <p>17:30-19:30</p>
               <h3>-- 21/07/2023 --</h3>
               <p>11:00-13:00</p>
               <p>16:00-18:00</p>
-
+              
             </div>
             <div className="movie-2">
               <img className="coverArt" src='tim.jpg' alt="movie cover"></img>
               <h2>Movie 2: Showing Times</h2>
+              {user && <Link to={`/review/Movie 2`}>Write a Review</Link>}
               <h3>-- 20/07/2023 --</h3>
               <p>15:00-17:00</p>
               <p>20:00-22:00</p>
@@ -62,6 +76,7 @@ function Home() {
             <div className="movie-3">
               <img className="coverArt" src='stormseeker.jpg' alt="movie cover"></img>
               <h2>Movie 3: Showing Times</h2>
+              {user && <Link to={`/review/Movie 3`}>Write a Review</Link>}
               <h3>-- 20/07/2023 --</h3>
               <p>10:00-12:00</p>
               <p>14:00-16:00</p>
@@ -72,6 +87,7 @@ function Home() {
             <div className="movie-4">
               <img className="coverArt" src='diego.jpg' alt="movie cover"></img>
               <h2>Movie 4: Showing Times</h2>
+              {user && <Link to={`/review/Movie 4`}>Write a Review</Link>}
               <h3>-- 20/07/2023 --</h3>
               <p>16:30-18:30</p>
               <p>19:30-21:30</p>
@@ -82,6 +98,7 @@ function Home() {
             <div className="movie-5">
               <img className="coverArt" src='laura.jpg' alt="movie cover"></img>
               <h2>Movie 5: Showing Times</h2>
+              {user && <Link to={`/review/Movie 5`}>Write a Review</Link>}
               <h3>-- 20/07/2023 --</h3>
               <p>13:00-15:00</p>
               <p>18:00-20:00</p>
