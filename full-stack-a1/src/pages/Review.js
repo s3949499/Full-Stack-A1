@@ -8,9 +8,10 @@ function Review() {
     const [review, setReview] = useState('');
     const [reviews, setReviews] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
-    const [averageRating, setAverageRating] = useState(0); // New state for average rating
+    const [averageRating, setAverageRating] = useState(0); 
 
-    // Calculate the average rating from the reviews
+    
+    {/*  Calculate the average rating from the reviews */}
     const calculateAverageRating = (reviews) => {
         if (reviews.length === 0) {
             return 0;
@@ -19,7 +20,8 @@ function Review() {
         return totalRating / reviews.length;
     };
 
-    // Retrieve reviews for the specific movie from local storage when the component mounts
+    
+    {/* Retrieve reviews for the specific movie from local storage when the component mounts */}
     useEffect(() => {
         const storedReviews = JSON.parse(localStorage.getItem('reviews'));
         if (storedReviews) {
@@ -29,7 +31,7 @@ function Review() {
     }, [movieName]);
 
     useEffect(() => {
-        // Calculate and update the average rating when reviews change
+        {/*  Calculate and update the average rating when reviews change */ }
         const averageRating = calculateAverageRating(reviews);
         setAverageRating(averageRating);
     }, [movieName, reviews]);
@@ -57,18 +59,21 @@ function Review() {
             review
         };
 
-        // Get all reviews, add the new one, then save back to localStorage
+
+        {/* Get all reviews, add the new one, then save back to localStorage*/ }
         const allReviews = JSON.parse(localStorage.getItem('reviews')) || [];
         allReviews.push(newReview);
         localStorage.setItem('reviews', JSON.stringify(allReviews));
 
-        // Update component's state
+
+        {/* Update component's state*/ }
         setReviews([...reviews, newReview]);
         setReview('');
         setRating(1);
         setErrorMessage("");
 
-        // Calculate and update the average rating when a new review is added
+
+        {/* Calculate and update the average rating when a new review is added*/ }
         const updatedAverageRating = calculateAverageRating([...reviews, newReview]);
         setAverageRating(updatedAverageRating);
     };

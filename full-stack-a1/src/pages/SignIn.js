@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+{/* Function to check if an email is in a valid format using a regular expression */ }
 function isValidEmail(email) {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
   return regex.test(email);
 }
-
+{/* The main SignIn component  */ }
 function SignIn() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ function SignIn() {
     const { name, value } = e.target;
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
-
+  {/* Function to validate the form data */ }
   const validateForm = () => {
     let formErrors = {};
 
@@ -37,10 +38,12 @@ function SignIn() {
 
       if (storedUser && storedUser.email === formData.email && storedUser.password === formData.password) {
         alert("Login Successful!");
-        
-        // Redirect the user to the home page
+
+
+        {/*  Redirect the user to the home page */ }
         navigate('/');
       } else {
+        {/* Display error message for incorrect credentialsisplay error message for incorrect credentials */ }
         setErrors({
           ...errors,
           general: "Invalid email or password."
@@ -48,7 +51,7 @@ function SignIn() {
       }
     }
   };
-
+  {/* render sign in form */ }
   return (
     <div className='container'>
       <div className='form-container'>

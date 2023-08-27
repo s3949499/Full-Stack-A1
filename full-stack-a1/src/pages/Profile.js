@@ -86,6 +86,7 @@ function Profile() {
         </button>
         {isFormVisible ? (
           <div className="edit-Overlay">
+              {/* when edit button is clicked display form to edit user's username, password and email */}
             <h2 className='profile-Header'>--Edit Profile--</h2>
             <form className='edit-Form'>
               <div className='edit-Name'>
